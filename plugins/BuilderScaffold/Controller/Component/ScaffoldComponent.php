@@ -452,7 +452,7 @@ class ScaffoldComponent extends Component {
             /**
              * Retrieves data
              */
-            $this->scaffoldModel->recursive = -1;
+            $this->scaffoldModel->recursive = 0;
             $this->controller->paginate = array_merge($this->controller->paginate, $option);
 
             /**
@@ -615,7 +615,7 @@ class ScaffoldComponent extends Component {
             /**
              * Retrieves data
              */
-            $this->scaffoldModel->recursive = -1;
+            $this->scaffoldModel->recursive = 0;
             $this->controller->request->data = $this->scaffoldModel->read();
 
             /**

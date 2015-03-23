@@ -38,6 +38,17 @@ class User extends AppModel {
         'created',
         'modified'
     );
+    
+    /**
+     *
+     * @var type 
+     */
+    public $belongsTo = array(
+        'Role' => array(
+            'className' => 'Role',
+            'foreignKey' => 'role_id'
+        )
+    );
 
 }
 

@@ -317,7 +317,7 @@ $options_page_size[1000] = '1000';
                                 foreach ($associations['belongsTo'] as $_alias => $_details) {
                                     if ($fieldName === $_details['foreignKey']) {
                                         $isWorked = true;
-                                        $fieldHtml = $this->Html->link(${$singularVar}[$_alias][$_details['displayField']], array('controller' => $_details['controller'], 'action' => 'view', ${$singularVar}[$_alias][$_details['primaryKey']]));
+                                        $fieldHtml = $this->Html->link($item[$_alias][$_details['displayField']], array('controller' => $_details['controller'], 'action' => 'view', $item[$_alias][$_details['primaryKey']]));
                                     }
                                 }
                             }

@@ -26,6 +26,17 @@ class Role extends AppModel {
     public $primaryKey = 'id';
     public $displayField = 'name';
 
+    /**
+     *
+     * @var type 
+     */
+    public $hasMany = array(
+        'User' => array(
+            'className' => 'User',
+            'foreignKey' => 'role_id'
+        )
+    );
+
 }
 
 ?>

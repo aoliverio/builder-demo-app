@@ -159,7 +159,7 @@ foreach ($associations as $_type => $_data) {
                 foreach ($associations['belongsTo'] as $_alias => $_details) {
                     if ($fieldName === $_details['foreignKey']) {
                         $isKeyField = true;
-                        $fieldHtml = $this->Html->link(${$singularVar}[$_alias][$_details['displayField']], array('controller' => $_details['controller'], 'action' => 'view', ${$singularVar}[$_alias][$_details['primaryKey']]));
+                        $fieldHtml = $this->Html->link($data[$_alias][$_details['displayField']], array('controller' => $_details['controller'], 'action' => 'view', $data[$_alias][$_details['primaryKey']]));
                     }
                 }
             }
