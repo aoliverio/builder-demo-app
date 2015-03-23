@@ -26,8 +26,21 @@ Inflector::rules('singular', array('uninflected' => array('.*')));
  * Load Builder plugins
  */
 if (TRUE) :
-    CakePlugin::load('BuilderAuth', array('bootstrap' => true));
+
+    /**
+     * Builder Auth
+     */
+    CakePlugin::load('BuilderAuth');
     $PLUGIN_PATH = App::pluginPath('BuilderAuth');
+    App::build(array('Model' => array($PLUGIN_PATH . DS . 'Model' . DS)), App::APPEND);
+    App::build(array('View' => array($PLUGIN_PATH . DS . 'View' . DS)), App::APPEND);
+    App::build(array('Controller' => array($PLUGIN_PATH . DS . 'Controller' . DS)), App::APPEND);
+
+    /**
+     * Builder Scaffold
+     */
+    CakePlugin::load('BuilderScaffold');
+    $PLUGIN_PATH = App::pluginPath('BuilderScaffold');
     App::build(array('Model' => array($PLUGIN_PATH . DS . 'Model' . DS)), App::APPEND);
     App::build(array('View' => array($PLUGIN_PATH . DS . 'View' . DS)), App::APPEND);
     App::build(array('Controller' => array($PLUGIN_PATH . DS . 'Controller' . DS)), App::APPEND);

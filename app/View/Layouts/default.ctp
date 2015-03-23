@@ -13,19 +13,21 @@
  * @since         CakePHP(tm) v 0.10.0.1076
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-$cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
-$cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 ?>
 <!DOCTYPE html>
 <html>
     <head>
         <?php echo $this->Html->charset(); ?>
-        <title><?php echo $cakeDescription ?>:<?php echo $this->fetch('title'); ?></title>
+        <title><?php echo Configure::read('Builder.app_name'); ?>: <?php echo $this->fetch('title'); ?></title>
         <?php echo $this->Html->meta('icon'); ?>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
         <!-- Custom theme -->
         <?php echo $this->Html->css('custom'); ?>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     </head>
     <body>
         <!-- Fixed navbar -->
@@ -33,13 +35,12 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         <!-- Page content -->
         <div class="container">
             <?php echo $this->Session->flash(); ?>
+            <?php if (isset($title_for_layout)): ?>
+                <h1 class="page-header"><?php echo $title_for_layout; ?></h1>
+            <?php endif; ?>
             <?php echo $this->fetch('content'); ?>
         </div>
         <!-- Sticky footer -->
         <?php echo $this->element('sticky-footer'); ?>
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     </body>
 </html>

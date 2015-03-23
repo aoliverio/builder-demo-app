@@ -76,6 +76,7 @@ CakePlugin::load('Builder', array('bootstrap' => true, 'routes' => true));
  * Define Builder params for this Application
  */
 Configure::write('Builder.app_name', 'DemoApp');
+Configure::write('Builder.app_slogan', 'uses aoBuilder plugins suite in a CakePHP 2.x test application');
 Configure::write('Builder.copyright_text', 'aoBuilder - DemoApp uses aoBuilder plugins suite in a CakePHP 2.x test application.');
 
 /**

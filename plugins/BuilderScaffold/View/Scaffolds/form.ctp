@@ -11,7 +11,6 @@
  * @license    MIT License (http://www.opensource.org/licenses/mit-license.php)
  * @since      CakePHP(tm) v 2.1.1
  */
-$actionButton = '';
 $scaffoldGrid = TRUE;
 $scaffoldGridHeader = TRUE;
 $scaffoldGridFooter = TRUE;
@@ -37,7 +36,7 @@ if (isset($scaffoldTab))
  * RENDER SCAFFOLD MODAL - Load scaffoldModal
  */
 if ($scaffoldModal) {
-    echo $this->element('Scaffold/modal');
+    echo $this->element('modal');
 }
 
 /**
@@ -64,22 +63,28 @@ if (file_exists($view_filename)) {
 if ($scaffoldGrid) :
 
     /**
-     * Set $scaffold['grid'] for layout 
+     * Set the $scaffold options
      */
+    $options = array(
+        'actionName' => ($this->request->action === 'add') ? 'Add' : 'Edit',
+        'actionButton' => ($this->request->action === 'add') ? 'Add' : 'Save',
+    );
+    $scaffold = array_merge($scaffold, $options);
+
     /**
      * 
      */
     switch ($scaffoldType) {
         case 'grid':
-            echo $this->element('Scaffold/grid_index', array('scaffold' => $scaffold));
+            echo $this->element('grid_form', array('scaffold' => $scaffold));
             break;
         default:
             $panel = array(
                 'header' => $scaffold['title_for_grid'] . ' <small>' . Inflector::humanize($scaffold['actionLabel']) . '</small>',
-                'body' => $this->element('Scaffold/grid_index', array('scaffold' => $scaffold)),
+                'body' => $this->element('grid_form', array('scaffold' => $scaffold)),
                 'footer' => NULL
             );
-            echo $this->element('Bootstrap/panel', array('panel' => $panel));
+            echo $this->element('Builder.Bootstrap/panel', array('panel' => $panel));
             break;
     }
 

@@ -28,21 +28,5 @@ App::uses('BuilderAppController', 'Builder.Controller');
  * will inherit them.
  */
 class AppController extends BuilderAppController {
-
-    /**
-     * Before filter event
-     */
-    public function beforeFilter() {
-
-        parent::beforeFilter();
-    }
-
-    /**
-     * Before render event
-     */
-    public function beforeRender() {
-
-        parent::beforeRender();
-    }
-
+    
 }

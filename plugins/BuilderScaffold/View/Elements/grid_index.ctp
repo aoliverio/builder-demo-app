@@ -230,10 +230,10 @@ $options_page_size[1000] = '1000';
     </div>
     <hr/>
     <?php if (TRUE) : ?>
-        <div id="selected_items_action" class="alert alert-info alert-dismissible" role="alert">
+        <div id="selected_items_action" class="alert alert-info" role="alert">
             <div class="row">
                 <div class="col-xs-12">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" title="close this block"><span aria-hidden="true">&times;</span></button>
+                    <button id="selected_hide_block" type="button" class="close" title="close this block"><span aria-hidden="true">&times;</span></button>
                     <div class="form-inline">
                         <div class="form-group">
                             <div class="btn-xs"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <strong>Only for selected items</strong></div>

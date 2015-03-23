@@ -36,7 +36,7 @@ if (isset($scaffoldTab))
  * RENDER SCAFFOLD MODAL - Load scaffoldModal
  */
 if ($scaffoldModal) {
-    echo $this->element('Scaffold/modal');
+    echo $this->element('modal');
 }
 
 /**
@@ -66,8 +66,7 @@ if ($scaffoldGrid) :
      * Set the $scaffold options
      */
     $options = array(
-        'actionName' => ($this->request->action === 'add') ? 'Add' : 'Edit',
-        'actionButton' => ($this->request->action === 'add') ? 'Add' : 'Save',
+        'actionName' => ($this->request->action === 'view') ? 'View' : 'Delete',
     );
     $scaffold = array_merge($scaffold, $options);
 
@@ -76,15 +75,15 @@ if ($scaffoldGrid) :
      */
     switch ($scaffoldType) {
         case 'grid':
-            echo $this->element('Scaffold/grid_form', array('scaffold' => $scaffold));
+            echo $this->element('grid_view', array('scaffold' => $scaffold));
             break;
         default:
             $panel = array(
                 'header' => $scaffold['title_for_grid'] . ' <small>' . Inflector::humanize($scaffold['actionLabel']) . '</small>',
-                'body' => $this->element('Scaffold/grid_form', array('scaffold' => $scaffold)),
+                'body' => $this->element('grid_view', array('scaffold' => $scaffold)),
                 'footer' => NULL
             );
-            echo $this->element('Bootstrap/panel', array('panel' => $panel));
+            echo $this->element('Builder.Bootstrap/panel', array('panel' => $panel));
             break;
     }
 

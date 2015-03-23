@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Description ...
+ * BuilderAppController is 
  * 
  * Licensed under The MIT License
  * Redistributions of files must retain the below copyright notice.
@@ -48,7 +48,7 @@ class BuilderAppController extends Controller {
      */
     public $components = array(
         'Scaffold' => array(
-            'className' => 'Builder.Scaffold'
+            'className' => 'BuilderScaffold.Scaffold'
         )
     );
 
