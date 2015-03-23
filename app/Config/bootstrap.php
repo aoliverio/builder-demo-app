@@ -73,6 +73,12 @@ Cache::config('default', array('engine' => 'File'));
 CakePlugin::load('Builder', array('bootstrap' => true, 'routes' => true));
 
 /**
+ * Define Builder params for this Application
+ */
+Configure::write('Builder.app_name', 'DemoApp');
+Configure::write('Builder.copyright_text', 'aoBuilder - DemoApp uses aoBuilder plugins suite in a CakePHP 2.x test application.');
+
+/**
  * To prefer app translation over plugin translation, you can set
  *
  * Configure::write('I18n.preferApp', true);

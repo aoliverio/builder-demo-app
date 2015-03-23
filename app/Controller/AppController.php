@@ -43,12 +43,6 @@ class AppController extends BuilderAppController {
     public function beforeRender() {
 
         parent::beforeRender();
-
-        /**
-         * Define Builder params for this Application
-         */
-        Configure::write('Builder.app_name', 'DemoApp');
-        Configure::write('Builder.copyright_text', 'aoBuilder - DemoApp uses aoBuilder plugins suite in a CakePHP 2.x test application.');
     }
 
 }
