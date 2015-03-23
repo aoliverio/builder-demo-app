@@ -1,1 +1,1 @@
-<h1 class="page-header">Home</h1>
+<p>This is home page ...</p>
