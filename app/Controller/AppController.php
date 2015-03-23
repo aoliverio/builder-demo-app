@@ -47,9 +47,8 @@ class AppController extends BuilderAppController {
         /**
          * Define Builder params for this Application
          */
-        Configure::write('Builder.app_name', 'UMG desk');
-        Configure::write('Builder.copyright_text', 'Universita\' degli Studi "Magna Graecia" di Catanzaro');
-        Configure::write('Builder.login_image', '');
+        Configure::write('Builder.app_name', 'DemoApp');
+        Configure::write('Builder.copyright_text', 'aoBuilder - DemoApp uses aoBuilder plugins suite in a CakePHP 2.x test application.');
     }
 
 }

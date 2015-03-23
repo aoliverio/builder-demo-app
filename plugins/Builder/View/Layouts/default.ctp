@@ -52,7 +52,7 @@
     <div id="footer">
         <hr/>
         <div class="row" style="padding: 10px">
-            <div class="col-sm-6 text-left"><small>&copy <?php echo date('Y'); ?> <?php echo Configure::read('builder.copyright_text'); ?></small></div>
+            <div class="col-sm-6 text-left"><small>&copy <?php echo date('Y'); ?> aoBuilder</small></div>
             <div class="col-sm-6 text-right"><small>powered by <strong>aoBuilder</strong> in CakePHP</small></div>
         </div>
     </div>

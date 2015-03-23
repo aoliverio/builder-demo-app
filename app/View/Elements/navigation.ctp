@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="<?php echo $this->Html->url('/'); ?>">DemoApp</a>
+            <a class="navbar-brand" href="<?php echo $this->Html->url('/'); ?>"><?php echo Configure::read('Builder.app_name') ?></a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
