@@ -1,0 +1,13 @@
+2015-03-23 11:47:37 Error: [MissingComponentException] Component class ScaffoldComponent could not be found.
+Exception Attributes: array (
+  'class' => 'ScaffoldComponent',
+  'plugin' => 'Builder',
+)
+Request URL: /github/builder-demo-app/
+Stack Trace:
+#0 /Applications/MAMP/htdocs/github/builder-demo-app/lib/Cake/Controller/ComponentCollection.php(53): ComponentCollection->load('Scaffold', Array)
+#1 /Applications/MAMP/htdocs/github/builder-demo-app/lib/Cake/Controller/Controller.php(643): ComponentCollection->init(Object(PagesController))
+#2 /Applications/MAMP/htdocs/github/builder-demo-app/lib/Cake/Routing/Dispatcher.php(188): Controller->constructClasses()
+#3 /Applications/MAMP/htdocs/github/builder-demo-app/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(PagesController), Object(CakeRequest))
+#4 /Applications/MAMP/htdocs/github/builder-demo-app/app/webroot/index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
