@@ -48,7 +48,7 @@ class BuilderAppController extends Controller {
      */
     public $components = array(
         'Scaffold' => array(
-            'className' => 'BuilderScaffold.Scaffold'
+            'className' => 'Builder.Scaffold'
         )
     );
 

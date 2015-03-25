@@ -35,15 +35,6 @@ if (TRUE) :
     App::build(array('Model' => array($PLUGIN_PATH . DS . 'Model' . DS)), App::APPEND);
     App::build(array('View' => array($PLUGIN_PATH . DS . 'View' . DS)), App::APPEND);
     App::build(array('Controller' => array($PLUGIN_PATH . DS . 'Controller' . DS)), App::APPEND);
-
-    /**
-     * Builder Scaffold
-     */
-    CakePlugin::load('BuilderScaffold');
-    $PLUGIN_PATH = App::pluginPath('BuilderScaffold');
-    App::build(array('Model' => array($PLUGIN_PATH . DS . 'Model' . DS)), App::APPEND);
-    App::build(array('View' => array($PLUGIN_PATH . DS . 'View' . DS)), App::APPEND);
-    App::build(array('Controller' => array($PLUGIN_PATH . DS . 'Controller' . DS)), App::APPEND);
 endif;
 
 //CakePlugin::load('Bld_Scaffold', array('bootstrap' => true));
