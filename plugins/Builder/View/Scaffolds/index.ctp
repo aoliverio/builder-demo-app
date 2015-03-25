@@ -37,7 +37,7 @@ if (isset($scaffoldTab))
  * RENDER SCAFFOLD MODAL - Load scaffoldModal
  */
 if ($scaffoldModal) {
-    echo $this->element('modal');
+    echo $this->element('Scaffolds/modal');
 }
 
 /**
@@ -71,15 +71,15 @@ if ($scaffoldGrid) :
      */
     switch ($scaffoldType) {
         case 'grid':
-            echo $this->element('grid_index', array('scaffold' => $scaffold));
+            echo $this->element('Scaffolds/grid_index', array('scaffold' => $scaffold));
             break;
         default:
             $panel = array(
                 'header' => $scaffold['title_for_grid'] . ' <small>' . Inflector::humanize($scaffold['actionLabel']) . '</small>',
-                'body' => $this->element('grid_index', array('scaffold' => $scaffold)),
+                'body' => $this->element('Scaffolds/grid_index', array('scaffold' => $scaffold)),
                 'footer' => NULL
             );
-            echo $this->element('Builder.Bootstrap/panel', array('panel' => $panel));
+            echo $this->element('Bootstrap/panel', array('panel' => $panel));
             break;
     }
 

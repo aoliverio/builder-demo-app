@@ -28,6 +28,14 @@ Inflector::rules('singular', array('uninflected' => array('.*')));
 if (TRUE) :
 
     /**
+     * Builder 
+     */
+    $PLUGIN_PATH = App::pluginPath('Builder');
+    App::build(array('Model' => array($PLUGIN_PATH . DS . 'Model' . DS)), App::APPEND);
+    App::build(array('View' => array($PLUGIN_PATH . DS . 'View' . DS)), App::APPEND);
+    App::build(array('Controller' => array($PLUGIN_PATH . DS . 'Controller' . DS)), App::APPEND);
+
+    /**
      * Builder Auth
      */
     CakePlugin::load('BuilderAuth');

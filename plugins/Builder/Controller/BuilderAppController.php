@@ -82,7 +82,6 @@ class BuilderAppController extends Controller {
      */
     public function beforeRender() {
 
-
         /**
          * IMPORTANT: Resolve problem in FormHelper CakeLib
          * This code empties the settings of ClassRegistry in PluginName/Config/bootstrap.php

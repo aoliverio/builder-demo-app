@@ -36,7 +36,7 @@ if (isset($scaffoldTab))
  * RENDER SCAFFOLD MODAL - Load scaffoldModal
  */
 if ($scaffoldModal) {
-    echo $this->element('modal');
+    echo $this->element('Scaffolds/modal');
 }
 
 /**
@@ -46,7 +46,7 @@ if ($scaffoldGridHeader) {
     $view_filename = APP . 'View' . DS . $this->viewPath . DS . $scaffold['actionView'] . '_scaffold_header.ctp';
     if (file_exists($view_filename))
         require $view_filename;
-}
+}  
 
 /**
  * RENDER CUSTOM SCAFFOLD VIEW
@@ -75,15 +75,15 @@ if ($scaffoldGrid) :
      */
     switch ($scaffoldType) {
         case 'grid':
-            echo $this->element('grid_view', array('scaffold' => $scaffold));
+            echo $this->element('Scaffolds/grid_view', array('scaffold' => $scaffold));
             break;
         default:
             $panel = array(
                 'header' => $scaffold['title_for_grid'] . ' <small>' . Inflector::humanize($scaffold['actionLabel']) . '</small>',
-                'body' => $this->element('grid_view', array('scaffold' => $scaffold)),
+                'body' => $this->element('Scaffolds/grid_view', array('scaffold' => $scaffold)),
                 'footer' => NULL
             );
-            echo $this->element('Builder.Bootstrap/panel', array('panel' => $panel));
+            echo $this->element('Bootstrap/panel', array('panel' => $panel));
             break;
     }
 
