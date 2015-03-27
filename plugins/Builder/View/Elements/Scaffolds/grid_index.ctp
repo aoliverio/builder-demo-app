@@ -265,8 +265,8 @@ $options_page_size[1000] = '1000';
                     <th style="width:25px">
                         <input id="checkall" class="" type="checkbox" name="" value="" />
                     </th>           
-                    <?php foreach ($fields as $key => $val): ?>
-                        <th><small><?php echo $this->Paginator->sort($key); ?></small></th>
+                    <?php foreach ($fields as $key => $field): ?>
+                        <th><small><?php echo $this->Paginator->sort($field['label']); ?></small></th>
                     <?php endforeach; ?>
                     <th style="min-width:100px">&nbsp;</th>
                 </tr>
@@ -333,7 +333,7 @@ $options_page_size[1000] = '1000';
                                         $fieldHtml = '<input type="checkbox" ' . $checked . ' disabled />';
                                         break;
                                     case 'file':
-                                        $fieldHtml = $this->Html->link(h($val), h($val)) . h($val);
+                                        $fieldHtml = $this->Html->link(h($field), h($field)) . h($field);
                                         break;
                                     case 'wysiwyg':
                                         $fieldHtml = h(String::truncate(strip_tags($fieldHtml), 110, array('ending' => '...', 'exact' => false, 'html' => true)));

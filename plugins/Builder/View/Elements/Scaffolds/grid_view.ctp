@@ -122,7 +122,7 @@ foreach ($associations as $_type => $_data) {
     <form class="form-horizontal" role="form">
         <?php
         $html = null;
-        foreach ($scaffoldFields as $fieldName => $fieldOptions) :
+        foreach ($fields as $fieldName => $fieldOptions) :
 
             /**
              * 
@@ -144,13 +144,7 @@ foreach ($associations as $_type => $_data) {
              * Field settings
              */
             $uid = $modelClass . '_' . $fieldName;
-            $caption = str_replace('_id', '', $fieldName);
-            $caption = Inflector::humanize($caption);
             $isKeyField = false;
-
-            $fieldOptions['label'] = false;
-            $fieldOptions['div'] = false;
-            $fieldOptions['id'] = $uid;
 
             /**
              * Render key field
@@ -189,7 +183,7 @@ foreach ($associations as $_type => $_data) {
              * Default template for scaffold row
              */
             $html .= '<div class="form-group">';
-            $html .= '<label for="' . $uid . '" class="col-sm-2 control-label">' . $caption . '</label>';
+            $html .= '<label for="' . $uid . '" class="col-sm-2 control-label">' . $fieldOptions['label'] . '</label>';
             $html .= '<div class="col-sm-10"><span class="thumbnail">' . $fieldHtml . '</span></div>';
             $html .= '</div>';
 

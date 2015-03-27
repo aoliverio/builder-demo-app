@@ -237,8 +237,8 @@ class ScaffoldComponent extends Component {
             'title_for_layout' => Inflector::humanize($this->scaffoldTitle),
             'title_for_grid' => Inflector::humanize($this->scaffoldTitle),
             'blacklist' => array($this->modelKey, 'created', 'modified', 'updated'),
-            'ignoreField' => isset($this->scaffoldModel->scaffold['ignoreField']) ? $this->scaffoldModel->scaffold['ignoreField'] : array(),
-            'ignoreFieldList' => isset($this->scaffoldModel->scaffold['ignoreFieldList']) ? $this->scaffoldModel->scaffold['ignoreFieldList'] : array(),
+            'ignoreFields' => isset($this->scaffoldModel->scaffold['ignoreFields']) ? $this->scaffoldModel->scaffold['ignoreFields'] : array(),
+            'ignoreFieldsAction' => isset($this->scaffoldModel->scaffold['ignoreFieldsAction']) ? $this->scaffoldModel->scaffold['ignoreFieldsAction'] : array(),
             'fieldTypes' => isset($this->scaffoldModel->scaffold['fieldTypes']) ? $this->scaffoldModel->scaffold['fieldTypes'] : array(),
             'fieldSearch' => array(),
         );
@@ -380,7 +380,7 @@ class ScaffoldComponent extends Component {
         /**
          * Set $scaffoldFields for action LIST / INDEX
          */
-        $scaffoldFields = $this->getScaffoldFields();
+        $scaffoldFields = $this->_getScaffoldFields();
 
         /**
          * Before scaffold
@@ -555,13 +555,7 @@ class ScaffoldComponent extends Component {
             /**
              * Set $scaffoldFields for action ADD
              */
-            $scaffoldIgnoreField = array_merge($this->scaffold['ignoreField'], $this->scaffold['ignoreFieldList'], $this->scaffold['blacklist']);
-            $scaffoldFields = array();
-            foreach ($this->modelFields as $key => $val) :
-                if (!in_array($key, $scaffoldIgnoreField)) :
-                    $scaffoldFields[$key] = $val;
-                endif;
-            endforeach;
+            $scaffoldFields = $this->_getScaffoldFields($action);
 
             /**
              * Set scaffold options for layout
@@ -619,15 +613,9 @@ class ScaffoldComponent extends Component {
             $this->controller->request->data = $this->scaffoldModel->read();
 
             /**
-             * Set $scaffoldFields for action ADD
+             * Set $scaffoldFields
              */
-            $scaffoldIgnoreField = array_merge($this->scaffold['ignoreField'], $this->scaffold['ignoreFieldList'], $this->scaffold['blacklist']);
-            $scaffoldFields = array();
-            foreach ($this->modelFields as $key => $val) :
-                if (!in_array($key, $scaffoldIgnoreField)) :
-                    $scaffoldFields[$key] = $val;
-                endif;
-            endforeach;
+            $scaffoldFields = $this->_getScaffoldFields('view');
 
             /**
              * Set scaffold options for layout
@@ -815,7 +803,8 @@ class ScaffoldComponent extends Component {
     protected function _scaffoldSearch(CakeRequest $request) {
 
         $modelClass = $this->controller->modelClass;
-        $scaffoldFields = $this->getScaffoldFields();
+        $scaffoldFields = $this->_getScaffoldFieldsSearch();
+        
         $search_txt = '';
         $search_opt = array();
 
@@ -1208,15 +1197,43 @@ class ScaffoldComponent extends Component {
      * 
      * @return type
      */
-    protected function getScaffoldFields() {
-        $scaffoldIgnoreField = array_merge($this->scaffold['ignoreField'], $this->scaffold['ignoreFieldList'], $this->scaffold['blacklist']);
+    protected function _getScaffoldFields($action = 'index') {
+
+        /**
+         * Set default $scaffoldFields
+         */
         $scaffoldFields = array();
-        foreach ($this->modelFields as $key => $val) :
-            if (!in_array($key, $scaffoldIgnoreField)) :
-                $scaffoldFields[$key] = $val;
+
+        /**
+         * Set $scaffoldIgnoreField
+         */
+        $scaffoldIgnoreFields = $this->scaffold['blacklist'];
+        if (isset($this->scaffold['ignoreFields']) && is_array($this->scaffold['ignoreFields']))
+            $scaffoldIgnoreFields = array_merge($scaffoldIgnoreFields, $this->scaffold['ignoreFields']);
+        if (isset($this->scaffold['ignoreFieldsAction'][$action]) && is_array($this->scaffold['ignoreFieldsAction'][$action]))
+            $scaffoldIgnoreFields = array_merge($scaffoldIgnoreFields, $this->scaffold['ignoreFieldsAction'][$action]);
+
+        /**
+         * Foreach $this->modelFields
+         */
+        foreach ($this->modelFields as $key => $field) :
+            if (!in_array($key, $scaffoldIgnoreFields)) :
+                /**
+                 * Merge schema informations with fieldTypes settings
+                 */
+                if (isset($this->scaffold['fieldTypes'][$key]) && is_array($this->scaffold['fieldTypes'][$key]))
+                    $field = array_merge($field, $this->scaffold['fieldTypes'][$key]);
+                /**
+                 * If not isset $field['label'], set default value
+                 */
+                if (!isset($field['label']))
+                    $field['label'] = str_replace('_id', '', Inflector::humanize($key));
+                /**
+                 * Set $scaffoldFields[$key]
+                 */
+                $scaffoldFields[$key] = $field;
             endif;
         endforeach;
-
         return $scaffoldFields;
     }
 
@@ -1224,15 +1241,14 @@ class ScaffoldComponent extends Component {
      * 
      * @return type
      */
-    protected function getScaffoldFieldSearch() {
-        $scaffoldFields = $this->getScaffoldFields();
-        $scaffoldFieldSearch = array();
+    protected function _getScaffoldFieldsSearch() {
+        $scaffoldFields = $this->_getScaffoldFields('search');
+        $scaffoldFieldsSearch = array();
         foreach ($scaffoldFields as $key => $field):
             if ($field['type'] == 'string' || $field['type'] == 'text')
-                $scaffoldFieldSearch[] = $key;
+                $scaffoldFieldsSearch[$key] = $field;
         endforeach;
-
-        return $scaffoldFieldSearch;
+        return $scaffoldFieldsSearch;
     }
 
 }

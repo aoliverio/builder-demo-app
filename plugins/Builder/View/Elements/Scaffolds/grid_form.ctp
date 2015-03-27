@@ -99,7 +99,7 @@ foreach ($associations as $_type => $_data) {
     <?php echo $this->Form->create($modelClass, array('type' => 'file')); ?>
     <?php
     $html = null;
-    foreach ($scaffoldFields as $fieldName => $fieldOptions) :
+    foreach ($fields as $fieldName => $fieldOptions) :
 
         /**
          * 
