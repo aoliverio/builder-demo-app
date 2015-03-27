@@ -732,7 +732,6 @@ class ScaffoldComponent extends Component {
      * @throws NotFoundException When id being deleted does not exist.
      */
     protected function _scaffoldDelete(CakeRequest $request) {
-
         if (!$request->is('post')) {
             $this->controller->set('message', 'Delete confirm?');
             $this->controller->render($request->action, $this->layout);
@@ -804,7 +803,7 @@ class ScaffoldComponent extends Component {
 
         $modelClass = $this->controller->modelClass;
         $scaffoldFields = $this->_getScaffoldFieldsSearch();
-        
+
         $search_txt = '';
         $search_opt = array();
 
@@ -1227,7 +1226,7 @@ class ScaffoldComponent extends Component {
                  * If not isset $field['label'], set default value
                  */
                 if (!isset($field['label']))
-                    $field['label'] = str_replace('_id', '', Inflector::humanize($key));
+                    $field['label'] = Inflector::humanize(str_replace('_id', '', $key));
                 /**
                  * Set $scaffoldFields[$key]
                  */

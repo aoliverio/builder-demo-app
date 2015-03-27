@@ -1,12 +1,20 @@
-<script>
-    $(document).ready(function () {
-        $('#modalScaffold').on('hidden.bs.modal', function (e) {
-            $('#modalScaffoldContent').empty();
-        });
-    });
-</script>    
-<div class="modal fade" id="modalScaffold" tabindex="-1" role="dialog" aria-labelledby="modalScaffold" aria-hidden="true">
+<!-- View -->
+<div class="modal fade" id="modalScaffoldView" tabindex="-1" role="dialog" aria-labelledby="modalScaffoldView" aria-hidden="true">
     <div class="modal-dialog">
-        <div id="modalScaffoldContent" class="modal-content"></div>
+        <div class="modal-content"></div>
+    </div> 
+</div>
+
+<!-- Edit -->
+<div class="modal fade" id="modalScaffoldEdit" tabindex="-1" role="dialog" aria-labelledby="modalScaffoldEdit" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content"></div>
+    </div>    
+</div>
+
+<!-- Delete -->
+<div class="modal fade" id="modalScaffoldDelete" tabindex="-1" role="dialog" aria-labelledby="modalScaffoldDelete" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content"></div>
     </div>    
 </div>

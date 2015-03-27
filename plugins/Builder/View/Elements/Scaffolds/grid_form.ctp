@@ -98,11 +98,16 @@ foreach ($associations as $_type => $_data) {
 <?php if ($datagrid_content) : ?>
     <?php echo $this->Form->create($modelClass, array('type' => 'file')); ?>
     <?php
+    /**
+     * 
+     */
     $html = null;
+    $Model = ClassRegistry::init($modelClass);
+
     foreach ($fields as $fieldName => $fieldOptions) :
 
         /**
-         * 
+         * If $fieldName is numeric
          */
         if (is_numeric($fieldName) && !is_array($fieldOptions)) {
             $fieldName = $fieldOptions;
@@ -113,12 +118,11 @@ foreach ($associations as $_type => $_data) {
          * Blacklist
          */
         $entity = explode('.', $fieldName);
-
         if (is_array($blacklist) && (in_array($fieldName, $blacklist) || in_array(end($entity), $blacklist)))
             continue;
 
         /**
-         * Field settings
+         * Set options for all inputs
          */
         $uid = $modelClass . '_' . $fieldName;
         $caption = str_replace('_id', '', $fieldName);
@@ -127,6 +131,28 @@ foreach ($associations as $_type => $_data) {
         $fieldOptions['label'] = false;
         $fieldOptions['div'] = false;
         $fieldOptions['id'] = $uid;
+
+        /**
+         * For the fields in associations
+         */
+        foreach ($Model->belongsTo as $bgOptions) :
+            if ($bgOptions['foreignKey'] == $fieldName) :
+                $belongModel = ClassRegistry::init($bgOptions['className']);
+
+                /**
+                 * Set options for SELECT input
+                 */
+                $options['type'] = null;
+                $options['empty'] = 'choose one ...';
+                $options['options'] = $belongModel->find('list', array(
+                    'conditions' => $bgOptions['conditions'],
+                    'fields' => $bgOptions['fields'],
+                    'order' => $bgOptions['order'],
+                ));
+                $options['selected'] = $data[$modelClass][$fieldName];
+                $fieldOptions = array_merge($fieldOptions, $options);
+            endif;
+        endforeach;
 
         /**
          * Default template for scaffold row

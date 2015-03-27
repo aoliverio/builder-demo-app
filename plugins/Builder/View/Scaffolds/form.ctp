@@ -21,9 +21,11 @@ $scaffoldType = 'default';
  * Ajax Request
  */
 if ($this->request->is('ajax')) {
-    $scaffoldType = 'grid';
-    $scaffoldGridHeader = FALSE;
-    $scaffoldGridFooter = FALSE;
+    if ($this->request->action == 'add')
+        echo $this->element('Scaffolds/ajax_add', array('scaffold' => $scaffold));
+    if ($this->request->action == 'edit')
+        echo $this->element('Scaffolds/ajax_edit', array('scaffold' => $scaffold));
+    exit;
 }
 
 /**

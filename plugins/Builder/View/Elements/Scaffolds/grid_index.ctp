@@ -262,9 +262,8 @@ $options_page_size[1000] = '1000';
         <table class="table table-responsive table-condensed table-striped table-hover">
             <thead>
                 <tr>
-                    <th style="width:25px">
-                        <input id="checkall" class="" type="checkbox" name="" value="" />
-                    </th>           
+                    <th style="width:16px"><input id="checkall" class="" type="checkbox" name="" value="" /> </th>
+                    <th style="width:16px">&nbsp;</th>
                     <?php foreach ($fields as $key => $field): ?>
                         <th><small><?php echo $this->Paginator->sort($field['label']); ?></small></th>
                     <?php endforeach; ?>
@@ -274,9 +273,8 @@ $options_page_size[1000] = '1000';
             <tbody>
                 <?php foreach ($data as $item): ?>
                     <tr>
-                        <td>
-                            <input id="data[Check][<?php echo $modelClass ?>][<?php echo h($item[$modelClass][$primaryKey]) ?>]" class="check" type="checkbox" name="data[Check][<?php echo $modelClass ?>][<?php echo h($item[$modelClass][$primaryKey]) ?>]" value="<?php echo h($item[$modelClass][$primaryKey]) ?>" />
-                        </td>
+                        <td><input id="data[Check][<?php echo $modelClass ?>][<?php echo h($item[$modelClass][$primaryKey]) ?>]" class="check" type="checkbox" name="data[Check][<?php echo $modelClass ?>][<?php echo h($item[$modelClass][$primaryKey]) ?>]" value="<?php echo h($item[$modelClass][$primaryKey]) ?>" /></td>
+                        <td><?php echo $this->Html->link(__d('cake', '<span class="glyphicon glyphicon-tasks"></span>'), array('action' => 'view', $item[$modelClass][$primaryKey]), array('class' => 'btn btn-xs btn-warning', 'title' => 'master-details', 'escape' => FALSE)); ?></td>
                         <?php
                         $html = null;
 
@@ -356,9 +354,13 @@ $options_page_size[1000] = '1000';
                         echo $html;
                         ?>
                         <td class="text-right">
+                            <!--
                             <?php echo $this->Html->link(__d('cake', '<span class="glyphicon glyphicon-zoom-in"></span>'), array('action' => 'view', $item[$modelClass][$primaryKey]), array('class' => 'btn btn-xs btn-default', 'title' => 'view item', 'escape' => FALSE)); ?>
                             <?php echo $this->Html->link(__d('cake', '<span class="glyphicon glyphicon-pencil"></span>'), array('action' => 'edit', $item[$modelClass][$primaryKey]), array('class' => 'btn btn-xs btn-default', 'title' => 'edit item', 'escape' => FALSE)); ?>
-                            <a href="<?php echo $this->Html->url(array('action' => 'delete', $item[$modelClass][$primaryKey])); ?>" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#modalScaffold" title="delete item"><span class="glyphicon glyphicon-trash"></a>
+                            -->
+                            <a href="<?php echo $this->Html->url(array('action' => 'view', $item[$modelClass][$primaryKey])); ?>" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modalScaffoldView" title="view item"><span class="glyphicon glyphicon-search"></a>
+                            <a href="<?php echo $this->Html->url(array('action' => 'edit', $item[$modelClass][$primaryKey])); ?>" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modalScaffoldEdit" title="edit item"><span class="glyphicon glyphicon-pencil"></a>
+                            <a href="<?php echo $this->Html->url(array('action' => 'delete', $item[$modelClass][$primaryKey])); ?>" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#modalScaffoldDelete" title="delete item"><span class="glyphicon glyphicon-trash"></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

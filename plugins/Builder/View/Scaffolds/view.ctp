@@ -21,9 +21,8 @@ $scaffoldType = 'default';
  * Ajax Request
  */
 if ($this->request->is('ajax')) {
-    $scaffoldType = 'grid';
-    $scaffoldGridHeader = FALSE;
-    $scaffoldGridFooter = FALSE;
+    echo $this->element('Scaffolds/ajax_view', array('scaffold' => $scaffold));
+    exit;
 }
 
 /**
@@ -46,7 +45,7 @@ if ($scaffoldGridHeader) {
     $view_filename = APP . 'View' . DS . $this->viewPath . DS . $scaffold['actionView'] . '_scaffold_header.ctp';
     if (file_exists($view_filename))
         require $view_filename;
-}  
+}
 
 /**
  * RENDER CUSTOM SCAFFOLD VIEW
@@ -86,6 +85,14 @@ if ($scaffoldGrid) :
             echo $this->element('Bootstrap/panel', array('panel' => $panel));
             break;
     }
+
+    /**
+     * 
+     * Related Objects
+     */
+    if (TRUE) :
+        echo $this->element('Scaffolds/grid_related', array('scaffold' => $scaffold));
+    endif;
 
 endif;
 
