@@ -499,15 +499,9 @@ class ScaffoldComponent extends Component {
         if ($action == 'add') :
 
             /**
-             * Set $scaffoldFields for action ADD
+             * Set $scaffoldFields 
              */
-            $scaffoldIgnoreField = array_merge($this->scaffold['ignoreField'], $this->scaffold['ignoreFieldList'], $this->scaffold['blacklist']);
-            $scaffoldFields = array();
-            foreach ($this->modelFields as $key => $val) :
-                if (!in_array($key, $scaffoldIgnoreField)) :
-                    $scaffoldFields[$key] = $val;
-                endif;
-            endforeach;
+            $scaffoldFields = $this->_getScaffoldFields($action);
 
             /**
              * Set scaffold options for layout
@@ -553,7 +547,7 @@ class ScaffoldComponent extends Component {
             $this->controller->request->data = $this->scaffoldModel->read();
 
             /**
-             * Set $scaffoldFields for action ADD
+             * Set $scaffoldFields
              */
             $scaffoldFields = $this->_getScaffoldFields($action);
 
@@ -733,7 +727,7 @@ class ScaffoldComponent extends Component {
      */
     protected function _scaffoldDelete(CakeRequest $request) {
         if (!$request->is('post')) {
-            $this->controller->set('message', 'Delete confirm?');
+            $this->controller->set('scaffold', $this->scaffold);
             $this->controller->render($request->action, $this->layout);
         } else {
             $id = false;

@@ -3,7 +3,7 @@
     <h4 class="modal-title" id="myModalLabel"><?php echo $singularHumanName; ?> - Delete data</h4>
 </div>
 <div class="modal-body">
-    <?php echo $message; ?>
+    <p>Do you want delete this item?</p>
 </div>
 <div class="modal-footer">
     <?php echo $this->Form->create('ScaffoldDelete'); ?>
