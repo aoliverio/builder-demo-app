@@ -378,7 +378,7 @@ class ScaffoldComponent extends Component {
     protected function _scaffoldIndex($params) {
 
         /**
-         * Set $scaffoldFields for action LIST / INDEX
+         * Set $scaffoldFields for action INDEX
          */
         $scaffoldFields = $this->_getScaffoldFields();
 
@@ -389,14 +389,20 @@ class ScaffoldComponent extends Component {
 
             $modelClass = $this->controller->modelClass;
 
-            // Set default $option
+            /**
+             * Set default $option from custom controller
+             */
             $option = is_array($this->controller->paginate) ? $this->controller->paginate : array();
 
-            // Scaffold Paginate
+            /**
+             * Scaffold.Paginate use the session options navigation
+             */
             $paginate = $this->controller->Session->check('Scaffold.Paginate.' . $modelClass) ? $this->controller->Session->read('Scaffold.Paginate.' . $modelClass) : array();
-            $option = array_merge($paginate, $option);
+            $option = array_merge($option, $paginate);
 
-            // Scaffold PaginateLimit
+            /**
+             * Scaffold PaginateLimit
+             */
             $limit = $this->controller->Session->check('Scaffold.Paginate.' . $modelClass . '.limit') ? $this->controller->Session->read('Scaffold.Paginate.' . $modelClass . '.limit') : 10;
             if (isset($this->request->data['PaginateLimit']['number'])) {
                 $limit = intval($this->request->data['PaginateLimit']['number']);
@@ -404,14 +410,20 @@ class ScaffoldComponent extends Component {
             }
             $option = array_merge($option, array('limit' => $limit));
 
-            // Scaffold PaginatePage
-            $page = isset($this->request->params['named']['page']) ? intval($this->request->params['named']['page']) : 1;
-            $option = array_merge($option, array('page' => $page));
+            /**
+             * Scaffold PaginatePage
+             */
+            if (isset($this->request->params['named']['page'])) {
+                $page = intval($this->request->params['named']['page']);
+                $option = array_merge($option, array('page' => $page));
+            }
 
-            // Scaffold Ordering
+            /**
+             * Scaffold Ordering
+             */
             if (isset($this->request->params['named']['sort']) && ($this->request->params['named']['direction'])) {
-                $order = $modelClass . '.' . trim($this->request->params['named']['sort']) . ' ' . trim($this->request->params['named']['direction']);
-                $option = array_merge($option, array('order' => $order));
+                $ordering = array($modelClass . '.' . trim($this->request->params['named']['sort']) => trim($this->request->params['named']['direction']));
+                $option = array_merge($option, array('order' => $ordering));
             }
 
             /**
@@ -451,9 +463,17 @@ class ScaffoldComponent extends Component {
 
             /**
              * Retrieves data
-             */
+             */            
             $this->scaffoldModel->recursive = 0;
             $this->controller->paginate = array_merge($this->controller->paginate, $option);
+
+            try {
+                $data = $this->controller->paginate();
+            } catch (NotFoundException $e) {
+                // Redirecting to first page
+                $this->controller->paginate = array_merge($this->controller->paginate, array('page' => 1));
+                $data = $this->controller->paginate();
+            }
 
             /**
              * Set scaffold options for layout
@@ -462,7 +482,7 @@ class ScaffoldComponent extends Component {
                 'action' => 'index',
                 'actionLabel' => 'List',
                 'actionView' => 'index',
-                'data' => $this->controller->paginate(),
+                'data' => $data,
                 'paginate' => $this->controller->paginate,
                 'fields' => $scaffoldFields
             );

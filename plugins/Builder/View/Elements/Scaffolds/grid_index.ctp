@@ -212,7 +212,7 @@ $options_page_size[1000] = '1000';
             <div class="text-right">
                 <div class="form-inline">
                     <div class="form-group">
-                        <a href="<?php echo $this->Html->url(array('action' => 'add')); ?>" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true" title="add new record"></span> Add</a>
+                        <a href="<?php echo $this->Html->url(array('action' => 'add')); ?>" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalScaffoldAdd" title="add new item"><span class="glyphicon glyphicon-plus" aria-hidden="true" title="add new record"></span> Add</a>
                     </div>
                     <div class="form-group">
                         <div class="dropdown">
@@ -239,16 +239,16 @@ $options_page_size[1000] = '1000';
                             <div class="btn-xs"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> <strong>Only for selected items</strong></div>
                         </div>
                         <div class="form-group">
-                            <a href="" class="btn btn-default btn-sm" title="view all checked items"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> View</a>
+                            <a href="" class="btn btn-default btn-sm" title="view all selected items"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> View</a>
                         </div>
                         <div class="form-group">
-                            <a href="" class="btn btn-default btn-sm" title="edit all checked items"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit</a>
+                            <a href="" class="btn btn-default btn-sm" title="edit all selected items"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit</a>
                         </div>
                         <div class="form-group">
-                            <a href="" class="btn btn-danger btn-sm" title="delete all checked items"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</a>
+                            <a href="" class="btn btn-danger btn-sm" title="delete all selected items"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</a>
                         </div>
                         <div class="form-group">
-                            <a href="" class="btn btn-default btn-sm" title="export all checked items"><span class="glyphicon glyphicon-export" aria-hidden="true"></span> Export</a>
+                            <a href="" class="btn btn-default btn-sm" title="export all selected items"><span class="glyphicon glyphicon-export" aria-hidden="true"></span> Export</a>
                         </div>
                     </div>
                 </div>
@@ -265,7 +265,7 @@ $options_page_size[1000] = '1000';
                     <th style="width:16px"><input id="checkall" class="" type="checkbox" name="" value="" /> </th>
                     <th style="width:16px">&nbsp;</th>
                     <?php foreach ($fields as $key => $field): ?>
-                        <th><small><?php echo $this->Paginator->sort($field['label']); ?></small></th>
+                        <th><small><?php echo $this->Paginator->sort($key); ?></small></th>
                     <?php endforeach; ?>
                     <th style="min-width:100px">&nbsp;</th>
                 </tr>
@@ -274,7 +274,7 @@ $options_page_size[1000] = '1000';
                 <?php foreach ($data as $item): ?>
                     <tr>
                         <td><input id="data[Check][<?php echo $modelClass ?>][<?php echo h($item[$modelClass][$primaryKey]) ?>]" class="check" type="checkbox" name="data[Check][<?php echo $modelClass ?>][<?php echo h($item[$modelClass][$primaryKey]) ?>]" value="<?php echo h($item[$modelClass][$primaryKey]) ?>" /></td>
-                        <td><?php echo $this->Html->link(__d('cake', '<span class="glyphicon glyphicon-tasks"></span>'), array('action' => 'view', $item[$modelClass][$primaryKey]), array('class' => 'btn btn-xs btn-warning', 'title' => 'master-details', 'escape' => FALSE)); ?></td>
+                        <td><?php echo $this->Html->link(__d('cake', '<span class="glyphicon glyphicon-tasks"></span>'), array('action' => 'view', $item[$modelClass][$primaryKey]), array('class' => 'btn btn-xs btn-warning', 'title' => 'related items', 'escape' => FALSE)); ?></td>
                         <?php
                         $html = null;
 

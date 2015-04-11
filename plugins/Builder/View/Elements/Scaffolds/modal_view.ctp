@@ -3,7 +3,7 @@ extract($scaffold);
 ?>
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <h4 class="modal-title" id="myModalLabel"><?php echo $singularHumanName; ?> - View data</h4>
+    <h4 class="modal-title" id="myModalLabel"><?php echo $singularHumanName; ?> - View item</h4>
 </div>
 <div class="modal-body">
     <!-- Render datagrid  -->
@@ -71,10 +71,9 @@ extract($scaffold);
                 /**
                  * Default template for scaffold row
                  */
-                $html .= '<div class="form-group">';
-                $html .= '<label for="' . $uid . '" class="col-sm-2 control-label">' . $fieldOptions['label'] . '</label>';
-                $html .= '<div class="col-sm-10"><span class="thumbnail">' . $fieldHtml . '</span></div>';
-                $html .= '</div>';
+                $html .= '<label>' . $fieldOptions['label'] . '</label>';
+                $html .= '<p>' . $fieldHtml . '</p>';
+                $html .= '<hr/>'; 
 
             endforeach;
             echo $html;
@@ -83,5 +82,5 @@ extract($scaffold);
     <?php endif; ?>
 </div>
 <div class="modal-footer">
-    View data
+    <small>Use datagrid view</small>
 </div>

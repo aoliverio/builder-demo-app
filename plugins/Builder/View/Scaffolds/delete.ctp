@@ -21,6 +21,8 @@ $scaffoldType = 'default';
  * Ajax Request
  */
 if ($this->request->is('ajax')) {
-    echo $this->element('Scaffolds/ajax_delete', array('scaffold' => $scaffold));
+    echo $this->element('Scaffolds/modal_delete', array('scaffold' => $scaffold));
     exit;
 }
+
+exit;

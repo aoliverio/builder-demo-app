@@ -22,9 +22,9 @@ $scaffoldType = 'default';
  */
 if ($this->request->is('ajax')) {
     if ($this->request->action == 'add')
-        echo $this->element('Scaffolds/ajax_add', array('scaffold' => $scaffold));
+        echo $this->element('Scaffolds/modal_add', array('scaffold' => $scaffold));
     if ($this->request->action == 'edit')
-        echo $this->element('Scaffolds/ajax_edit', array('scaffold' => $scaffold));
+        echo $this->element('Scaffolds/modal_edit', array('scaffold' => $scaffold));
     exit;
 }
 
@@ -83,7 +83,7 @@ if ($scaffoldGrid) :
         default:
             $panel = array(
                 'header' => $scaffold['title_for_grid'] . ' <small>' . Inflector::humanize($scaffold['actionLabel']) . '</small>',
-                'body' => $this->element('Builder.Scaffolds/grid_form', array('scaffold' => $scaffold)),
+                'body' => $this->element('Builder.Scaffolds/grid_' . $this->request->action, array('scaffold' => $scaffold)),
                 'footer' => NULL
             );
             echo $this->element('Bootstrap/panel', array('panel' => $panel));

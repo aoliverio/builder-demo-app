@@ -14,7 +14,7 @@ extract($scaffold);
 ?>
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <h4 class="modal-title" id="myModalLabel"><?php echo $singularHumanName; ?> - EDIT data</h4>
+    <h4 class="modal-title" id="myModalLabel"><?php echo $singularHumanName; ?> - Edit item</h4>
 </div>
 <div class="modal-body">
     <!-- Render datagrid content -->
@@ -50,7 +50,7 @@ extract($scaffold);
         $caption = str_replace('_id', '', $fieldName);
         $caption = Inflector::humanize($caption);
 
-        $fieldOptions['label'] = false;
+        $fieldOptions['label'] = $caption;
         $fieldOptions['div'] = false;
         $fieldOptions['id'] = $uid;
 
@@ -79,10 +79,7 @@ extract($scaffold);
         /**
          * Default template for scaffold row
          */
-        $html .= '<div class="form-group">';
-        $html .= '<label for="' . $uid . '" class="col-sm-2 control-label">' . $caption . '</label>';
-        $html .= '<div class="col-sm-10">' . $this->Form->input($fieldName, $fieldOptions) . '</div>';
-        $html .= '</div>';
+        $html .= '<p>' . $this->Form->input($fieldName, $fieldOptions) . '</p>';
 
     endforeach;
     echo $html;
@@ -91,5 +88,5 @@ extract($scaffold);
     <?php echo $this->Form->end(__d('cake', $actionButton)); ?>
 </div>
 <div class="modal-footer">
-    EDIT data
+    <small>Use datagrid view</small>
 </div>

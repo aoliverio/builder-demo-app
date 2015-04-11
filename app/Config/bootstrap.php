@@ -77,7 +77,7 @@ CakePlugin::load('Builder', array('bootstrap' => true, 'routes' => true));
  */
 Configure::write('Builder.app_name', 'DemoApp');
 Configure::write('Builder.app_slogan', 'uses aoBuilder plugins suite in a CakePHP 2.x test application');
-Configure::write('Builder.copyright_text', 'aoBuilder - DemoApp uses aoBuilder plugins suite in a CakePHP 2.x test application.');
+Configure::write('Builder.copyright_text', 'aoBuilder - DemoApp uses aoBuilder plugins suite in a CakePHP 2.x demo application.');
 
 /**
  * To prefer app translation over plugin translation, you can set

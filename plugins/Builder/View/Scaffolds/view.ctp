@@ -21,7 +21,7 @@ $scaffoldType = 'default';
  * Ajax Request
  */
 if ($this->request->is('ajax')) {
-    echo $this->element('Scaffolds/ajax_view', array('scaffold' => $scaffold));
+    echo $this->element('Scaffolds/modal_view', array('scaffold' => $scaffold));
     exit;
 }
 
