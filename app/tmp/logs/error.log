@@ -1,0 +1,30 @@
+2015-04-22 22:01:12 Error: [MissingViewException] View file "Pages/dist/summernote.css.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'Pages/dist/summernote.css.ctp',
+)
+Request URL: /github/builder-demo-app/pages/dist/summernote.css
+Stack Trace:
+#0 /Applications/MAMP/htdocs/github/builder-demo-app/lib/Cake/View/View.php(470): View->_getViewFileName('dist/summernote...')
+#1 /Applications/MAMP/htdocs/github/builder-demo-app/lib/Cake/Controller/Controller.php(960): View->render('dist/summernote...', NULL)
+#2 /Applications/MAMP/htdocs/github/builder-demo-app/app/Controller/PagesController.php(68): Controller->render('dist/summernote...')
+#3 [internal function]: PagesController->display('dist', 'summernote.css')
+#4 /Applications/MAMP/htdocs/github/builder-demo-app/lib/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(PagesController), Array)
+#5 /Applications/MAMP/htdocs/github/builder-demo-app/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#6 /Applications/MAMP/htdocs/github/builder-demo-app/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(PagesController), Object(CakeRequest))
+#7 /Applications/MAMP/htdocs/github/builder-demo-app/app/webroot/index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2015-04-22 22:01:12 Error: [MissingViewException] View file "Pages/dist/summernote.min.js.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'Pages/dist/summernote.min.js.ctp',
+)
+Request URL: /github/builder-demo-app/pages/dist/summernote.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/github/builder-demo-app/lib/Cake/View/View.php(470): View->_getViewFileName('dist/summernote...')
+#1 /Applications/MAMP/htdocs/github/builder-demo-app/lib/Cake/Controller/Controller.php(960): View->render('dist/summernote...', NULL)
+#2 /Applications/MAMP/htdocs/github/builder-demo-app/app/Controller/PagesController.php(68): Controller->render('dist/summernote...')
+#3 [internal function]: PagesController->display('dist', 'summernote.min....')
+#4 /Applications/MAMP/htdocs/github/builder-demo-app/lib/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(PagesController), Array)
+#5 /Applications/MAMP/htdocs/github/builder-demo-app/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#6 /Applications/MAMP/htdocs/github/builder-demo-app/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(PagesController), Object(CakeRequest))
+#7 /Applications/MAMP/htdocs/github/builder-demo-app/app/webroot/index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
