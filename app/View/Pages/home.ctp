@@ -1,1 +1,1 @@
-<p>This is home page ...</p>
+<h3>Using bower_component</h3>
